@@ -1,0 +1,44 @@
+﻿@model List<PersonModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ردیف</th>
+            <th scope="col">شناسه کاربر</th>
+            <th scope="col">نام</th>
+            <th scope="col">نام خانوادگی</th>
+            <th scope="col">تاریخ تولد</th>
+            <th scope="col">شماره تلفن</th>
+            <th class="col-2" scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <th scope="row">@(i+1)</th>
+                <td>@Model[i].PersonId</td>
+                <td>@Model[i].PersonFirstName</td>
+                <td>@Model[i].PersonLastName</td>
+                <td>@Model[i].PersonDateOfBirth</td>
+                <td>@Model[i].PersonPhoneNumber</td>
+                <td>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model[i].PersonId">
+                        <button class="btn btn-danger">
+                            حذف
+                        </button>
+                    </a>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model[i].PersonId">
+                        <button class="btn btn-warning">
+                            ویرایش
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
